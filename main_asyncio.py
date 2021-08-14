@@ -3,14 +3,16 @@
 '''
 Author: whalefall
 Date: 2021-08-07 14:15:50
-LastEditTime: 2021-08-14 23:17:14
+LastEditTime: 2021-08-14 23:15:44
 Description: 短信测压接口测试平台,测试200状态码的接口,不一定可用
+ToDo: 测试异步的可行性.
 '''
-import requests
+import httpx,requests
 import re
 from utils.db_sqlite import Sql
 import queue
 import threading
+import asyncio
 
 
 class SMS(object):
@@ -30,7 +32,7 @@ class SMS(object):
 
     def get_sms_api(self):
         '''请求短信轰炸平台'''
-        with requests.session() as ses:
+        with httpx.Client() as ses:
             ses.get(self.url, headers=self.header)
             resp = ses.get(f"{self.url}{self.key}", headers=self.header)
         # print(resp.text)
@@ -38,7 +40,6 @@ class SMS(object):
         apis = pat.findall(resp.text)
         assert not apis == [], "未找到任何接口!"
         print("获取到的原始接口总数:%s" % (len(apis)))
-        # 需要进行预处理
 
         for api in apis:
             
@@ -56,6 +57,7 @@ class SMS(object):
                 continue
             
             self.api_queue.put(api)
+
         print("Put到队列的接口总数:%s" % (self.api_queue.qsize()))
 
     def check_theads(self):
@@ -116,4 +118,5 @@ if __name__ == '__main__':
     url = "https://hz.79g.cn/index.php"
     # 0pcall=15019682928&c=1 需要加f格式化字符串！！
     spider = SMS(url, key=f'?0pcall={SMS.default_phone}&ok=')
-    spider.main()
+    # spider.main()
+    spider.get_sms_api()
