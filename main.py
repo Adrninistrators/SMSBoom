@@ -10,8 +10,13 @@ from utils import *
 from sqlmodel import create_engine, SQLModel
 
 
-@click.command()
-# @click.option('--build', help="初始化应用")
+@click.group()
+def cli():
+    """命令行组"""
+    pass
+
+
+@click.command(help="初始化应用")
 def build():
     config = Config()
     engine = create_engine(config.DATABASE_URI, echo=True)
@@ -19,5 +24,7 @@ def build():
     click.echo("初始化数据库成功!")
 
 
+cli.add_command(build)
+
 if __name__ == "__main__":
-    build()
+    cli()

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="75dd2bbe-7b9e-41e4-aa4f-ad7ff6e0e511" />
+          <option name="name" value="data" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/db/data.db" />
+            </array>
+          </option>
+          <option name="scriptOptions">
+            <map>
+              <entry key="QualifyWithSchema" value="ALWAYS" />
+            </map>
+          </option>
+        </State>
+        <State>
+          <option name="id" value="fd13a459-5a63-46ae-ba84-1fd0d203ebc3" />
+          <option name="name" value="data [2]" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/db/data.db" />
+            </array>
+          </option>
+          <option name="scriptOptions">
+            <map>
+              <entry key="QualifyWithSchema" value="ALWAYS" />
+            </map>
+          </option>
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
