@@ -13,6 +13,7 @@ import datetime
 class Apis(SQLModel, table=True):
     """Api Model"""
     id: Optional[int] = Field(default=None, primary_key=True)  # 数据库自己生成的id
+    desc: Optional[str] = "default"  # 接口描述
     method: str = "GET" or "POST"
     ua: Optional[
         str] = "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 " \
